@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    border: none;
+}
+
+body {
+  width: 100vw;
+  background-color: antiquewhite;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+  body .bold {
+    font-weight: 700; }
+    body header {
+        width: 100vw; }
+    body header h1 {
+        text-align: center;
+        font-size: 70px;
+        padding: 100px 0; }
+    body main {
+        width: 1024px;
+        margin: auto; }
+        body main section form fieldset {
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* flex-wrap: wrap; */
+            margin: auto;
+            padding: 30px 30px;
+            border: 1px solid #252525; }
+            body main section form fieldset .form_div_short {
+                display: flex;
+                flex-direction: row;
+                /* padding-bottom: 18px;  */
+            }
+            body main section form fieldset .form-div_champs {
+                display: flex;
+                flex-direction: column;
+                padding: 10px 0px 10px 13px; 
+            }
+            body main section form fieldset div div {
+                width: 50%; }
+            body main section form fieldset div .short-input {
+                width: 200px;
+                height: 30px;
+            }
+            body main section form fieldset .large-input {
+                width: 450px;
+                height: 30px;
+                /* padding-bottom: 18px; */
+            }
+            /* message */
+            body main section form fieldset .message-input {
+                width: 450px;
+                height: 150px;
+                padding-left: 7.5px;
+                border: 1px solid #747474;
+                font-size: 16px;
+            }
+            body main section form fieldset input {
+                padding-left: 7.5px;
+                border: 1px solid #747474;
+            }
+            body main section form fieldset input:hover {
+                border: 1px solid #252525;
+            }
+            body main section form fieldset #btn_send_message {
+                width: 300px;
+                height: 35px;
+                font-size: 16px;
+                background-color: #252525;
+                border: 1px solid #747474;
+                color: #ffffff;
+                margin: 30px auto;
+                padding: 0;
+            }
+            body main section form fieldset #btn_send_message:hover {
+                color: #aeaeae;
+            }
+        
+                /* body main section form fieldset div:last-of-type {
+                    margin-bottom: 30px;
+                 } */
+         /*  body main section form fieldset #btn_send_message {
+                width: 300px;
+                height: 35px;
+                font-size: 16px;
+                background-color: #25252525;
+                color: #aeaeaeae; }
+            body main section form fieldset p {
+                padding-top: 25px;
+            } */ 
+
+
+    

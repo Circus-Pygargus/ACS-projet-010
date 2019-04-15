@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>formulaire en js</title>
+    <meta name="author" content="Richard Meuret">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Formulaire en javascript</h1>
+    </header>
+    
+    <main>
+        <section>
+            <form name="myForm">
+                <fieldset>
+                    <legend>Want to contact me ?</legend>
+                    <div class="form_div_short">
+                        <div class="form-div_champs">
+                            <label class="bold" for="name">Name :</label>
+                            <input id="input-name" class="short-input" type="text" name="name" placeholder="Your name *">
+                        </div>
+                        <div class="form-div_champs">
+                            <label class="bold" for="first_name">First name :</label>
+                            <input id="input-1st_name" class="short-input" type="text" name="first-name" placeholder="Your first name *">
+                        </div>
+                    </div>
+                    <div class="form_div_short">
+                        <div class="form-div_champs">
+                            <label class="bold" for="email">Email :</label>
+                            <input id="input-email" class="short-input" type="email" name="email" placeholder="your email *">
+                        </div>
+                        <div class="form-div_champs">
+                            <label class="bold" for="phone">Phone number :</label>
+                            <input id="input-phone" class="short-input" type="number" name="phone" placeholder="Your phone number *">
+                        </div>
+                    </div>
+                    <div class="form-div_champs">
+                        <label class="bold" for="street">Street :</label>
+                        <input id="input-street" class="large-input" type="text" name="street" placeholder="Your street *">
+                    </div>
+                    <div class="form_div_short">
+                        <div class="form-div_champs">
+                            <label class="bold" for="zip_code">Zip code :</label>
+                            <input id="input-zip_code" class="short-input" type="number" name="zip_code" placeholder="Your zip code *">
+                        </div>
+                        <div class="form-div_champs">
+                            <label class="bold" for="town">Town :</label>
+                            <input id="input-town" class="short-input" type="text" name="town" placeholder="Your Town *">
+                        </div class="form-div_champs">
+                    </div>
+                    <div class="form-div_champs">
+                        <label class="bold" for="message">Message :</label>
+                        <textarea id="input-message" class="message-input" type="text" name="message" placeholder="Your message *"></textarea>
+                    </div>
+                    <input id="btn_send_message" type="submit" value="Send message">
+                    <p>* : mandatory</p>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+    <script src="js/formulaire/.js"></script>
+</body>
+</html>
