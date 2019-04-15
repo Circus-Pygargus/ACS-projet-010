@@ -78,6 +78,14 @@ body {
             body main section form fieldset #btn_send_message:hover {
                 color: #aeaeae;
             }
+            body main section form fieldset .p_error_hidden {
+                display: none;
+            }
+            body main section form fieldset .p_error_shown {
+                display: block;
+                font-size: 18px;
+                color: red;
+            }
         
                 /* body main section form fieldset div:last-of-type {
                     margin-bottom: 30px;

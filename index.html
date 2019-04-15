@@ -46,7 +46,7 @@
                     <div class="form_div_short">
                         <div class="form-div_champs">
                             <label class="bold" for="zip_code">Zip code :</label>
-                            <input id="input-zip_code" class="short-input" type="number" name="zip_code" placeholder="Your zip code *">
+                            <input id="input-zip_code" class="short-input" type="number" name="zip-code" placeholder="Your zip code *">
                         </div>
                         <div class="form-div_champs">
                             <label class="bold" for="town">Town :</label>
@@ -57,12 +57,13 @@
                         <label class="bold" for="message">Message :</label>
                         <textarea id="input-message" class="message-input" type="text" name="message" placeholder="Your message *"></textarea>
                     </div>
+                    <p id="p_error_message" class="p_error_hidden">pas bon !</p>
                     <input id="btn_send_message" type="submit" value="Send message">
                     <p>* : mandatory</p>
                 </fieldset>
             </form>
         </section>
     </main>
-    <script src="js/formulaire/.js"></script>
+    <script src="js/formulaire.js"></script>
 </body>
 </html>
