@@ -7,7 +7,7 @@
 
 body {
   width: 100vw;
-  background-color: antiquewhite;
+  background-color: #181818;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
   body .bold {
     font-weight: 700; }
@@ -20,6 +20,9 @@ body {
     body main {
         width: 1024px;
         margin: auto; }
+        body main section form {
+            margin-bottom: 100px;
+        }
         body main section form fieldset {
             width: 500px;
             display: flex;
@@ -28,7 +31,16 @@ body {
             /* flex-wrap: wrap; */
             margin: auto;
             padding: 30px 30px;
+            background-color: #aeaeae;
             border: 1px solid #252525; }
+            body main section form fieldset legend {
+                position: relative;
+                top: 22px;
+                font-size: 27px;
+                letter-spacing: 4.5;
+                color: white;
+                margin: auto;
+            }
             body main section form fieldset .form_div_short {
                 display: flex;
                 flex-direction: row;
@@ -78,13 +90,20 @@ body {
             body main section form fieldset #btn_send_message:hover {
                 color: #aeaeae;
             }
+            body main section form fieldset #p_error_message {
+                font-size: 18px;
+                padding-left: 22px;
+            }
             body main section form fieldset .p_error_hidden {
                 display: none;
             }
             body main section form fieldset .p_error_shown {
                 display: block;
-                font-size: 18px;
                 color: red;
+            }
+            body main section form fieldset .p_no_error_shown {
+                display: block;
+                color: green;
             }
         
                 /* body main section form fieldset div:last-of-type {
