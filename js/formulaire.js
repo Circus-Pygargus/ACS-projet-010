@@ -1,4 +1,3 @@
-<!--
 ////////////////////////////////  Variables  //////////////////////////
 // get form name
 var myForm = document.querySelector("#myForm");
@@ -27,16 +26,20 @@ var input_message = document.querySelector("#input-message");
 
 var inputsTexts = [
                     [input_name, "name"],
-                    [input_1st_name, "first name" ],
-                    [input_street, "street"],
-                    [input_town, "town"],
-                    [input_message, "message"]
+                    [input_1st_name, "first name"],
+                    [input_town, "town"]
 ];
 var inputsNbrs = [
                     [input_phone, "phone"],
                     [input_zip_code, "zip code"]
 ];
-var inputsEmails = [input_email, "email"];
+// var inputsMixed = [
+//                     [input_street, "street"],
+//                     [input_message, "message"]
+// ];
+var inputEmail = [input_email, "email"];
+var inputStreet = [input_email, "street"];
+var inputMessage = [input_email, "message"];
 /* true means we can submit form
     false: we have some errors */
 // var formTextOKToSubmit = false;
@@ -53,7 +56,9 @@ var regularExpression;
 
 
 ///////////////////////////////////////////  Events  ///////////////////////////////////
-btn_sendMessage.addEventListener("click", controlInputs);
+// seems to make pb with event.preventDefault() when using button instead of form 
+// btn_sendMessage.addEventListener("click", controlInputs);
+myForm.addEventListener("submit", controlInputs);
 
 
 
@@ -64,6 +69,7 @@ btn_sendMessage.addEventListener("click", controlInputs);
 
 // called by a click on submit button
 function controlInputs (event) {
+  // event.preventDefault();
   // first, empty this so it doesn't display an old message
   p_form_error.innerHTML = "";
   // check if p_form_error is shown, if yes, hide it !
@@ -74,7 +80,9 @@ function controlInputs (event) {
   // now we can check inputs
   controlInputsText();
   controlInputsNbrs();
+  controlInputStreet();
   controlInputEmail();
+  controlinputMessage();
 
   // Are all inputs ok ?
   canWeSendIt(event);
@@ -82,34 +90,43 @@ function controlInputs (event) {
 }
 
 
-// control text inputs
+// control name, first name and town inputs
 function controlInputsText () {
+  var textToCheck;
+  regularExpression = /^(?! )((?!  )(?! $)[a-zA-Z ]){3,50}$/;
   // let's loop
   var i;
   for (i=0; i<inputsTexts.length; i++){
-    var textToCheck = inputsTexts[i][0].value;
+    textToCheck = inputsTexts[i][0].value;
     if (textToCheck === "") {
       // p_form_error.innerHTML += "Please, fill out the " + inputsTexts[i][1] + " field.<br>";
       // errorCounter++;
       recordError("empty", inputsTexts[i], "string");
     }
+    // input.value is not empty, let's look inside
+    else {
+      if (!regularExpression.test(textToCheck)) {
+        recordError("invalid", inputsTexts[i], "string");
+      }
+    }
   }  
-}
+}   
 
 
-// control int inputs
+// control phone and zip code inputs
 function controlInputsNbrs () {
+    var nbrToCheck;
     var i;
     for (i=0; i<inputsNbrs.length; i++) {
       console.log("voui");
-      var nbrToCheck = inputsNbrs[i][0].value;
+      nbrToCheck = inputsNbrs[i][0].value;
       // nothing written in the input field
       if (nbrToCheck === "") {
         // p_form_error.innerHTML += "Please, fill out the " + inputsNbrs[i][1] + " field.<br>";
         // errorCounter++;
         recordError("empty", inputsNbrs[i], "number");
       }
-      // input was filled outerHeight, let's check
+      // input was filled out, let's check
       else {
           switch (inputsNbrs[i][1]) {
               // it's a phone number
@@ -125,6 +142,8 @@ function controlInputsNbrs () {
                 recordError("invalid", inputsNbrs[i], "number");
               }
               break;
+
+              // it's a zip code
               case "zip code":
               regularExpression = /^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/;
               if (!regularExpression.test(nbrToCheck)) {
@@ -145,13 +164,38 @@ function controlInputEmail () {
     // is input field empty ?
     if (emailToCheck === "") {
         // p_form_error.innerHTML += "Please, fill out the email field.<br>";
-        recordError("empty", inputsEmails, "email");
+        recordError("empty", inputEmail, "email");
     }
     // check if email adress is valid (doesn't see if exist)
-    else if (!regularExpression.test(emailToCheck)) {
-            recordError("invalid", inputsEmails, "email");
+    else if (!regularExpression.text(emailToCheck)) {
+            recordError("invalid", inputEmail, "email");
     }
 }
+
+
+// control address input
+function controlInputStreet () {
+    var streetToCheck = input_street.value;
+    // Ma première regEx =)      My very first regEx (=
+    regularExpression = /^([1-9]([0-9]{1,3})? ?(bis|ter)?,? ?)?(Place|Impasse|Chemin|Rue|Avenue|Boulevard){1}[-a-zA-Z0-9 ]{2,35}/i;
+    // 
+    if (streetToCheck === "") {
+        recordError("empty", inputStreet, "street");
+    }
+    else {
+        if (!regularExpression.test(streetToCheck)) {
+          recordError("invalid", inputStreet, "street");
+        }
+    }
+
+}
+
+
+// control message input
+function controlinputMessage (){
+    var messageToCheck = input_message.value;  
+}
+
 
 
 // explain errors in a <p> that will be displayed once each field have been correctly filled out
@@ -175,22 +219,28 @@ function recordError (_errorCode, _falseInput, _inputType) {
         case "empty":
             p_form_error.innerHTML += "Please, fill out the " + _falseInput[1] + " field.<br>";
             break;
+        // the input is ot valid
         case "invalid":
             if (_inputType === "string") {
-
+                p_form_error.innerHTML += "Please, give a valid " + -_falseInput[1] + ".<br>";
             }
             else if (_inputType === "number") {
                 p_form_error.innerHTML += "Please, give a valid " + _falseInput[1] + " number.<br>";
             }
             else if (_inputType === "email") {
-                p_form_error.innerHTML += "Please, give a valid email adress."
+                p_form_error.innerHTML += "Please, give a valid email address.<br>";
             }
+            else if (_inputType === "street") {
+                p_form_error.innerHTML += "Please, fill out the street field correctly.<br>";
+            }
+            // Problem !! we should never reach this point !
             else {
-                alert("Pb ! le type d'erreur envoyé à recordError() n'est pas reconnu !!");
+                alert("Pb ! le type d'input (" + _inputType + ") envoyé à recordError() n'est pas reconnu !!");
             }
             break;
+        // Problem !! we should never reach this point !
         default : 
-            alert("Attention, j'essaye de stocker une erreur non reconnue ou mal nommée");
+            alert("Attention, j'essaye de stocker une erreur (" + _errorCode + ") non reconnue ou mal nommée");
     }
 }
 
@@ -214,8 +264,7 @@ function canWeSendIt (_event) {
         p_form_error.classList.replace("p_error_hidden", "p_no_error_shown");
         p_form_error.innerHTML += "Nbr of counted errors : " + errorCounter + "<br>";
         p_form_error.innerHTML += "Everything seems to be ok !";
-        event.preventDefault();
+        _event.preventDefault();
     }
 }
-//--> 
   
